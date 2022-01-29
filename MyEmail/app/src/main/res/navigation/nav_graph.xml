@@ -15,4 +15,9 @@
         android:name="com.hybcode.myemail.HelpFragment"
         android:label="help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/sentItemsFragment"
+        android:name="com.hybcode.myemail.SentItemsFragment"
+        android:label="sent Items"
+        tools:layout="@layout/fragment_sent_items" />
 </navigation>
