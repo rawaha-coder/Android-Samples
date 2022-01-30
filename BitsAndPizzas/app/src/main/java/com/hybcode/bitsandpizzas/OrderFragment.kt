@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.chip.Chip
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 
 class OrderFragment : Fragment() {
@@ -23,26 +26,37 @@ class OrderFragment : Fragment() {
         val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        val pizzaGroup = view.findViewById<RadioGroup>(R.id.pizza_group)
 
-        val pizzaType = pizzaGroup.checkedRadioButtonId
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
 
-        if (pizzaType == -1){
+        fab.setOnClickListener {
+            val pizzaGroup = view.findViewById<RadioGroup>(R.id.pizza_group)
+            val pizzaType = pizzaGroup.checkedRadioButtonId
+            if (pizzaType == -1){
+                val text = "You need to choose a pizza type"
+                Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+            }else{
+                val radio = view.findViewById<RadioButton>(pizzaType)
+                var text = (when(pizzaType){
+                    R.id.radio_diavolo -> "Diavolo pizza"
+                    else -> "Funghi pizza"
+                })
 
-        }else{
-            val radio = view.findViewById<RadioButton>(pizzaType)
-        }
+                val parmesan = view.findViewById<Chip>(R.id.parmesan)
 
-        val parmesan = view.findViewById<Chip>(R.id.parmesan)
+                text += if (parmesan.isChecked) ", extra parmesan" else ""
 
-        if (parmesan.isChecked) {
+                val chiliOil = view.findViewById<Chip>(R.id.chili_oil)
 
-        }
+                text += if (chiliOil.isChecked) ", extra chiliOil" else ""
 
-        val chiliOil = view.findViewById<Chip>(R.id.chili_oil)
-
-        if (chiliOil.isChecked){
-
+                Snackbar.make(fab, text, Snackbar.LENGTH_SHORT)
+                    .setAction("Undo"){
+                        val textUndo = "Undo Clicked"
+                        Toast.makeText(activity, textUndo, Toast.LENGTH_SHORT).show()
+                    }
+                    .show()
+            }
         }
 
         return view
