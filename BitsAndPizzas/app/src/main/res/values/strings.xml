@@ -2,4 +2,12 @@
     <string name="app_name">Bits and Pizzas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="restaurant_logo">Restaurant logo</string>
+    <string name="diavolo">Diavolo</string>
+    <string name="funghi">Funghi</string>
+    <string name="parmesan">Parmesan</string>
+    <string name="chili_oil">Chili oil</string>
+    <string name="send">send</string>
+    <string name="which_type_of_pizza_would_you_like">Which type of pizza would you like?</string>
+    <string name="please_choose_any_extras">Please choose any extras:</string>
 </resources>
