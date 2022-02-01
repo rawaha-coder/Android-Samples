@@ -29,17 +29,21 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        viewModel.incorrectGuesses.observe(viewLifecycleOwner, Observer { guess ->
-            binding.incorrectGuesses.text = getString(R.string.incorrect_guesses, guess)
-        })
+        binding.gameViewModel = viewModel
 
-        viewModel.livesLeft.observe(viewLifecycleOwner, Observer { lives ->
-            binding.lives.text = getString(R.string.lives_left, lives.toString())
-        })
+        binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.secretWordDisplay.observe(viewLifecycleOwner, Observer { secretWord ->
-            binding.word.text = secretWord
-        })
+//        viewModel.incorrectGuesses.observe(viewLifecycleOwner, Observer { guess ->
+//            binding.incorrectGuesses.text = getString(R.string.incorrect_guesses, guess)
+//        })
+//
+//        viewModel.livesLeft.observe(viewLifecycleOwner, Observer { lives ->
+//            binding.lives.text = getString(R.string.lives_left, lives)
+//        })
+//
+//        viewModel.secretWordDisplay.observe(viewLifecycleOwner, Observer { secretWord ->
+//            binding.word.text = secretWord
+//        })
 
         viewModel.gameOver.observe(viewLifecycleOwner, Observer {
             if (it) {
