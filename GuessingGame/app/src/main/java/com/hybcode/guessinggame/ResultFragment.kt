@@ -9,12 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.hybcode.guessinggame.databinding.FragmentResultBinding
 
-
 class ResultFragment : Fragment() {
 
     private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding!!
-
     lateinit var viewModel: ResultViewModel
     lateinit var viewModelFactory: ResultViewModelFactory
 
@@ -32,12 +30,11 @@ class ResultFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(ResultViewModel::class.java)
 
-        binding.wonLose.text = viewModel.result
+        binding.resultViewModel = viewModel
 
         binding.newGameButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_resultFragment_to_gameFragment)
         }
-
         return view
     }
 
