@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hybcode.guessinggame.databinding.FragmentGameBinding
@@ -22,28 +23,33 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        
         _binding = FragmentGameBinding.inflate(inflater, container, false)
         val view = binding.root
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        updateScreen()
+        viewModel.incorrectGuesses.observe(viewLifecycleOwner, Observer { guess ->
+            binding.incorrectGuesses.text =  getString(R.string.incorrect_guesses, guess)
+        })
+
+        viewModel.livesLeft.observe(viewLifecycleOwner, Observer { lives ->
+            binding.lives.text = getString(R.string.lives_left, lives.toString())
+        })
+
+        viewModel.secretWordDisplay.observe(viewLifecycleOwner, Observer {secretWord ->
+            binding.word.text = secretWord
+        })
+
         binding.guessButton.setOnClickListener {
             viewModel.makeGuess(binding.guess.text.toString().uppercase())
             binding.guess.text = null
-            updateScreen()
             if (viewModel.isWon() || viewModel.isLose()) {
                val action = GameFragmentDirections.actionGameFragmentToResultFragment(viewModel.wonLoseMessage())
                 view.findNavController().navigate(action)
             }
         }
         return view
-    }
-
-    private fun updateScreen() {
-        binding.word.text = viewModel.secretWordDisplay
-        binding.lives.text = "You have ${viewModel.livesLeft} lives left."
-        binding.incorrectGuesses.text = "Incorrect guesses : ${viewModel.incorrectGuesses}"
     }
 
     override fun onDestroyView() {
