@@ -1,18 +1,25 @@
 package com.hybcode.guessinggame
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel: ViewModel() {
 
     private val words = listOf("Android", "Activity", "Fragment", "Navigation", "Binding")
     private val secretWord = words.random().uppercase()
-    var secretWordDisplay = ""
     private var correctGuesses = ""
-    var incorrectGuesses = ""
-    var livesLeft = 8
+
+    //var secretWordDisplay = ""
+    val secretWordDisplay = MutableLiveData<String>()
+
+    //var incorrectGuesses = ""
+    val incorrectGuesses = MutableLiveData<String>("")
+
+    //var livesLeft = 8
+    val livesLeft = MutableLiveData<Int>(8)
 
     init {
-        secretWordDisplay = deriveSecretWordDisplay()
+        secretWordDisplay.value = deriveSecretWordDisplay()
     }
 
     private fun deriveSecretWordDisplay(): String {
@@ -32,17 +39,17 @@ class GameViewModel: ViewModel() {
         if (guess.length == 1){
             if (secretWord.contains(guess)){
                 correctGuesses += guess
-                secretWordDisplay = deriveSecretWordDisplay()
+                secretWordDisplay.value = deriveSecretWordDisplay()
             }else{
-                incorrectGuesses += guess
-                livesLeft--
+                incorrectGuesses.value += guess
+                livesLeft.value = livesLeft.value?.minus(1)
             }
         }
     }
 
-    fun isWon() = secretWord.equals(secretWordDisplay, true)
+    fun isWon() = secretWord.equals(secretWordDisplay.value, true)
 
-    fun isLose() = livesLeft <= 0
+    fun isLose() = livesLeft.value ?: 0 <= 0
 
     fun wonLoseMessage(): String {
         var message = ""
