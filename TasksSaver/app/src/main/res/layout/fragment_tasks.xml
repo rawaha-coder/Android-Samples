@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TasksFragment">
+    tools:context=".view.TasksFragment">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.hybcode.taskssaver.logic.TasksViewModel" />
     </data>
 
     <LinearLayout
@@ -19,20 +21,22 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="@string/enter_a_task_name"
+            android:text="@={viewModel.newTaskName}" />
 
         <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/save_task"
+            android:onClick="@{() -> viewModel.addTask()}"/>
 
 
         <TextView
             android:id="@+id/tasks"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:text="@{viewModel.taskString}" />
 
     </LinearLayout>
 

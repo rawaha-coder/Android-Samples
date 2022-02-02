@@ -1,7 +1,8 @@
-package com.hybcode.taskssaver
+package com.hybcode.taskssaver.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hybcode.taskssaver.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
