@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.TasksFragment">
+    tools:context=".view.ui.TasksFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="com.hybcode.taskssaver.logic.TasksViewModel" />
+            type="com.hybcode.taskssaver.logic.vm.TasksViewModel" />
     </data>
 
     <LinearLayout
@@ -38,7 +38,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="top"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"/>
 
     </LinearLayout>
 

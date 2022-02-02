@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.ui.MainActivity">
 
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.hybcode.taskssaver.view.TasksFragment"
+        android:name="com.hybcode.taskssaver.view.ui.TasksFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"

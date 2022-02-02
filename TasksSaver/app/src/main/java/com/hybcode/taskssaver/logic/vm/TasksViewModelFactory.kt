@@ -1,4 +1,4 @@
-package com.hybcode.taskssaver.logic
+package com.hybcode.taskssaver.logic.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

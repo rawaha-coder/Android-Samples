@@ -1,4 +1,4 @@
-package com.hybcode.taskssaver.view
+package com.hybcode.taskssaver.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
