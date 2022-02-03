@@ -1,3 +1,3 @@
 # Android-Samples
 
-## This repository contains code samples created to practice android development and support learning to program Android App.
+## This repository contains code samples created while learning and practicing android development.
