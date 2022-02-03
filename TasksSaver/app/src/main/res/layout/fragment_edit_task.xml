@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.EditTaskFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hybcode.taskssaver.logic.vm.EditTaskViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edit_task_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/edit"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textSize="18sp"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:text="@={viewModel.task.taskName}"/>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked="@={viewModel.task.taskDone}"/>
+
+        <Button
+            android:id="@+id/update_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.updateTask()}"
+            android:text="@string/update_task" />
+
+        <Button
+            android:id="@+id/delete_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.deleteTask()}"
+            android:text="@string/delete_task" />
+
+    </LinearLayout>
+
+</layout>

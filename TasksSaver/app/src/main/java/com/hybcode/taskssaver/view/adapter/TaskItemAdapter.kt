@@ -3,13 +3,15 @@ package com.hybcode.taskssaver.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hybcode.taskssaver.R
 import com.hybcode.taskssaver.data.Task
 import com.hybcode.taskssaver.databinding.TaskItemBinding
+import com.hybcode.taskssaver.generated.callback.OnClickListener
 
-class TaskItemAdapter :
+class TaskItemAdapter(val clickListener: (taskId: Long) -> Unit) :
     ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -17,7 +19,7 @@ class TaskItemAdapter :
 
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
     class TaskItemViewHolder(private val binding: TaskItemBinding)
@@ -31,8 +33,11 @@ class TaskItemAdapter :
             }
         }
 
-        fun bind(item: Task) {
+        fun bind(item: Task, clickListener: (taskId: Long) -> Unit) {
             binding.task = item
+            binding.root.setOnClickListener{
+                clickListener(item.taskId)
+            }
         }
     }
 
